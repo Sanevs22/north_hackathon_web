@@ -6,7 +6,7 @@ import {
   TUI_SANITIZER,
 } from '@taiga-ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +20,7 @@ import {TuiIslandModule, TuiTagModule, TuiInputModule, TuiDataListWrapperModule,
 import {TuiTableModule, TuiTableFiltersModule, } from '@taiga-ui/addon-table';
 import { MobileContComponent } from './pages/mobile-cont/mobile-cont.component';
 import { MobilePartComponent } from './pages/mobile-part/mobile-part.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent, RegistryComponent, PartnerComponent, HomeComponent, MobileContComponent, MobilePartComponent],
@@ -42,7 +43,13 @@ import { MobilePartComponent } from './pages/mobile-part/mobile-part.component';
     TuiDataListWrapperModule,
     TuiMultiSelectModule,
     TuiCheckboxLabeledModule,
-    TuiInputDateModule
+    TuiInputDateModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   exports: [],
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
