@@ -1,6 +1,8 @@
 <div class="main">
     <h1>Добро пожаловать на сайт сервиса "Единая карта жителя Мурманской области "</h1>
    <br>
+   <img class="img" src="assets/card.svg" alt="">
+
    <br>
     <h2>Выполните вход в ...</h2>
 
@@ -15,6 +17,19 @@
             <tui-island  class="card" [hoverable]="true" size="l" textAlign="center">
                 <h3 class="tui-island__title">web-интерфейс партнера ЕКЖ</h3>
                 <p class="tui-island__paragraph">Назначение размера скидки группам владельцев ЕКЖ</p>
+              </tui-island>
+        </a> 
+        <a routerLink="/control">
+            <tui-island  class="card" [hoverable]="true" size="l" textAlign="center">
+                <h3 class="tui-island__title">мобильное приложение контролёра ЕКЖ</h3>
+                <p class="tui-island__paragraph">Чтение чипа карты ЕКЖ средствами NFC и определение типа льготы, имени и отчества владельца, месяца и года рождения, срока действия льготы</p>
+              </tui-island>
+        </a> 
+
+        <a routerLink="/partmoby">
+            <tui-island  class="card" [hoverable]="true" size="l" textAlign="center">
+                <h3 class="tui-island__title">мобильное приложение контролёра ЕКЖ</h3>
+                <p class="tui-island__paragraph">Чтение чипа карты ЕКЖ средствами NFC и определение типа льготы, имени и отчества владельца, месяца и года рождения, срока действия льготы</p>
               </tui-island>
         </a> 
     </div>

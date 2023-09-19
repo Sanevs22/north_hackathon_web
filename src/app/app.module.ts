@@ -18,9 +18,11 @@ import { TuiButtonModule,TuiDataListModule  } from '@taiga-ui/core';
 import {TuiIslandModule, TuiTagModule, TuiInputModule, TuiDataListWrapperModule, TuiMultiSelectModule, TuiCheckboxLabeledModule
 , TuiInputDateModule} from '@taiga-ui/kit';
 import {TuiTableModule, TuiTableFiltersModule, } from '@taiga-ui/addon-table';
+import { MobileContComponent } from './pages/mobile-cont/mobile-cont.component';
+import { MobilePartComponent } from './pages/mobile-part/mobile-part.component';
 
 @NgModule({
-  declarations: [AppComponent, RegistryComponent, PartnerComponent, HomeComponent],
+  declarations: [AppComponent, RegistryComponent, PartnerComponent, HomeComponent, MobileContComponent, MobilePartComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

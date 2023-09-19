@@ -1,0 +1,41 @@
+<div class="main">
+    <h1>
+        Мобильное приложение партнера
+    </h1>
+
+    <hr/>
+    <br>
+    <tui-island  class="card"  size="l" textAlign="left">
+        <h3 class="tui-island__title">Сканировать</h3>
+        <div *ngIf=" user">
+            <p class="tui-island__paragraph">Имя: {{user.name}}</p>
+            <p class="tui-island__paragraph">Лет: {{user.age}} </p>
+            <hr/>
+            <br>
+            <p class="tui-island__paragraph">Доступные скидки: </p>
+            <br>
+            <div class="gap">
+                <tui-island  class="discountc" *ngFor="let discount of discounts " size="l" textAlign="left">
+                    <p class="tui-island__paragraph">{{discount.title}}</p>
+                  <hr/>
+                    {{discount.desc}}
+                    <br>
+                    <p class="tui-island__paragraph">
+                    С {{discount.start}} по {{discount.end}}
+                </p>
+                </tui-island>
+            </div>
+
+
+
+        </div>
+        <p  *ngIf=" !user" class="tui-island__paragraph">{{text}}</p>
+      </tui-island>
+      <button
+      [showLoader]="loud"
+      tuiButton
+      (click)="scan()"
+    >
+        начать сканирование
+    </button>
+</div>

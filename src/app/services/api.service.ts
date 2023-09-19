@@ -21,14 +21,23 @@ interface Discount {
 })
 export class ApiService {
 
-  constructor() {
-if(localStorage.getItem("store")) {
- this.users =  JSON.parse( localStorage.getItem("store")!).users
+   constructor() {
+   this.start()
+  }
 
 
-}
-
-
+ async start(){
+    if(localStorage.getItem("store")) {
+      this.users = await JSON.parse( localStorage.getItem("store")!).users
+      this.discounts = await JSON.parse( localStorage.getItem("store")!).discounts
+     }
+     if(!this.users.length){
+       this.users = []
+     }
+     
+     if(!this.discounts ){
+       this.discounts = []
+     }
   }
   
   users:  User[] = [
@@ -106,7 +115,7 @@ if(localStorage.getItem("store")) {
     this.users.sort((a, b) => Number(a.idCard) - Number(b.idCard))
     localStorage.setItem("store", JSON.stringify( {
       users: this.users,
-      discont : this.discounts
+      discounts : this.discounts
     }))
     return this.users
   }
@@ -125,8 +134,8 @@ if(localStorage.getItem("store")) {
   discounts: Discount[] =[
     {  title: "Скидка на проезд",
        desc: "Для всех, кто старше 50",
-       start: "12.01.22",
-       end: "12.01.23"
+       start: "2023-09-28",
+       end: "2023-09-29"
       }
   ];
 
@@ -134,13 +143,12 @@ if(localStorage.getItem("store")) {
     return this.discounts
   }
 
-  addDiscounts(discount: Discount) {
+  addDiscounts(discount: any) {
+    this.discounts.push(discount)
     localStorage.setItem("store", JSON.stringify( {
       users: this.users,
-      discont : this.discounts
+      discounts : this.discounts
     }))
-    this.discounts.push(discount)
     return this.discounts
-
   }
 }
