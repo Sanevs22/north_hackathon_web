@@ -1,1 +1,21 @@
-<p>home works!</p>
+<div class="main">
+    <h1>Добро пожаловать на сайт сервиса "Единая карта жителя Мурманской области "</h1>
+   <br>
+   <br>
+    <h2>Выполните вход в ...</h2>
+
+    <div class="content">
+        <a routerLink="/registry">
+            <tui-island class="card" [hoverable]="true" size="l" textAlign="center">
+                <h3 class="tui-island__title">web-интерфейс оператора ЕКЖ</h3>
+                <p class="tui-island__paragraph">Добавление, удаление, изменение данных о владельце ЕКЖ, типа льготы и сроков ее действия</p>
+              </tui-island>
+        </a>
+        <a routerLink="/parthner">
+            <tui-island  class="card" [hoverable]="true" size="l" textAlign="center">
+                <h3 class="tui-island__title">web-интерфейс партнера ЕКЖ</h3>
+                <p class="tui-island__paragraph">Назначение размера скидки группам владельцев ЕКЖ</p>
+              </tui-island>
+        </a> 
+    </div>
+</div>

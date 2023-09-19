@@ -1,3 +1,241 @@
-<p>registry works!</p>
-222
-<button tuiButton icon="tuiIconSettings" (click)="click()">Button</button>
+<div class="main">
+    <h1>
+        Реестр карт 
+    </h1>
+
+    <div class="tool">
+        <div>
+            <form [formGroup]="searchForm">
+                <tui-input         tuiTextfieldSize="s"
+                class="input" formControlName="searchValue"
+                >
+                    Поиск
+                  <input 
+                  (input)="search()" placeholder="Введите ФИО" tuiTextfield  
+                  />
+                </tui-input>
+              </form>
+        </div>
+        <div>
+            <button
+            (click)="showDialog(-1)"
+            tuiButton
+          >
+            Добавить пользователя
+          </button>
+        </div>
+    </div>
+
+    <hr/>
+    <br>
+
+    <div class="table">
+        <table
+        tuiTable
+        [columns]="columns"
+    >
+        <thead>
+            <tr tuiThGroup>
+                <th
+                    *tuiHead="'idCard'"
+                    tuiTh
+                [sorter]="null"
+                 >
+                    idCard
+                </th>
+                <th
+                    *tuiHead="'name'"
+                    tuiTh
+                    [sorter]="null"
+                >
+                    ФИО
+                </th>
+                <th
+                    *tuiHead="'age'"
+                    tuiTh
+                    [sorter]="null"
+                 >
+                    Возраст
+                </th>
+                <th
+                    *tuiHead="'email'"
+                    tuiTh
+                    [sorter]="null"
+                >
+                    E-mail
+                </th>
+                <th
+                *tuiHead="'phone'"
+                tuiTh
+                [sorter]="null"
+                >
+                    Телефон
+                </th>
+                <th
+                    *tuiHead="'benefit'"
+                    tuiTh
+                    [sorter]="null"
+                >
+                    Льготы
+                </th>
+                <th
+                    *tuiHead="'actions'"
+                    tuiTh
+                    [sorter]="null"
+                ></th>
+            </tr>
+        </thead>
+        <tbody
+            tuiTbody
+            [data]="users"
+        >
+            <tr
+                *ngFor="let item of users; let index = index"
+                tuiTr
+            >
+            <td
+            *tuiCell="'idCard'"
+            tuiTd
+        >
+             {{ item.idCard }}
+        </td>
+                <td
+                    *tuiCell="'name'"
+                    tuiTd
+                >
+                   {{ item.name }}
+                </td>
+                <td
+                    *tuiCell="'age'"
+                    tuiTd
+                >
+                    {{ item.age }}
+                </td>
+                <td
+                    *tuiCell="'phone'"
+                    tuiTd
+                >
+                    {{ item.phone }}
+                </td>
+                <td
+                    *tuiCell="'email'"
+                    tuiTd
+                >
+                    {{ item.email }}
+                </td>
+                <td
+                    *tuiCell="'benefit'"
+                    tuiTd
+                >
+                    <tui-tag
+                        *ngFor="let benefit of item.benefit"
+                        class="tui-space_right-1"
+                        [autoColor]="true"
+                        [value]="benefit"
+                    ></tui-tag>
+                </td>
+                <td
+                    *tuiCell="'actions'"
+                    tuiTd
+                >
+                    <button
+                        appearance="flat"
+                        icon="tuiIconEdit2"
+                        shape="rounded"
+                        size="s"
+                        title="Remove"
+                        tuiIconButton
+                        type="button"
+                        class="remove"
+                        (click)="showDialog(index)"
+                    ></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+
+
+<ng-template
+    let-observer
+    [tuiDialogOptions]="{label: title, size: 's'}"
+    [(tuiDialog)]="open"
+>
+        <p>Введите данные пользователя</p>
+        <form [formGroup]="addUserForm">
+            <tui-input tuiTextfieldSize="s"
+            formControlName="idCard"
+            >
+            id карты
+              <input 
+               placeholder="Введите номер карты" tuiTextfield  
+              />
+            </tui-input>
+
+            <br>
+
+            <tui-input tuiTextfieldSize="s"
+            formControlName="email"
+            >
+            email
+              <input 
+               placeholder="Введите email" tuiTextfield  
+              />
+            </tui-input>
+            <br>
+
+            <tui-input tuiTextfieldSize="s"
+            formControlName="name"
+            >
+            ФИО
+              <input 
+               placeholder="Введите ФИО" tuiTextfield  
+              />
+            </tui-input>
+            <br>
+
+            <tui-input tuiTextfieldSize="s"
+            formControlName="age"
+            >
+            Возраст
+              <input 
+              placeholder="Введите Возраст" tuiTextfield  
+              />
+            </tui-input>
+            <br>
+
+            <tui-input tuiTextfieldSize="s"
+            formControlName="phone"
+            >
+            Номер телефона
+              <input 
+               placeholder="Введите номер телефона" tuiTextfield  
+              />
+            </tui-input>
+            <br>
+            <tui-multi-select
+            placeholder="доступные льготы"
+            class="b-form"
+            [editable]="false"
+            [formControl]="control"
+        >
+            Выберите доступные льготы
+            <tui-data-list-wrapper
+                *tuiDataList
+                tuiMultiSelectGroup
+                [items]="benefit"
+            ></tui-data-list-wrapper>
+        </tui-multi-select>
+          </form>
+        <p>
+            <button
+                tuiButton
+                type="submit"
+                (click)=" isUpd ?  updateUser() : addUser()"
+            >
+            {{titleBtn}}
+            </button>
+        </p>
+</ng-template>

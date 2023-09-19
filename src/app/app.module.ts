@@ -8,15 +8,18 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistryComponent } from './pages/registry/registry.component';
 import { PartnerComponent } from './pages/partner/partner.component';
-import { TuiButtonModule } from '@taiga-ui/core';
+import { HomeComponent } from './pages/home/home.component';
+import { TuiButtonModule,TuiDataListModule  } from '@taiga-ui/core';
+import {TuiIslandModule, TuiTagModule, TuiInputModule, TuiDataListWrapperModule, TuiMultiSelectModule, TuiCheckboxLabeledModule} from '@taiga-ui/kit';
+import {TuiTableModule, TuiTableFiltersModule, } from '@taiga-ui/addon-table';
 
 @NgModule({
-  declarations: [AppComponent, RegistryComponent, PartnerComponent],
+  declarations: [AppComponent, RegistryComponent, PartnerComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,7 +27,18 @@ import { TuiButtonModule } from '@taiga-ui/core';
     TuiRootModule,
     TuiDialogModule,
     TuiAlertModule,
+    TuiIslandModule,
     TuiButtonModule,
+    TuiTableModule,
+    TuiTagModule,
+    TuiTableFiltersModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TuiInputModule,
+    TuiDataListModule,
+    TuiDataListWrapperModule,
+    TuiMultiSelectModule,
+    TuiCheckboxLabeledModule
   ],
   exports: [],
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
