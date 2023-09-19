@@ -9,11 +9,27 @@ interface User {
   readonly benefit:  string[] | null;
 }
 
+interface Discount {
+  readonly title: string | null;
+  readonly desc: string | null;
+  readonly start: string | null;
+  readonly end: string | null;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
+
+  constructor() {
+if(localStorage.getItem("store")) {
+ this.users =  JSON.parse( localStorage.getItem("store")!).users
+
+
+}
+
+
+  }
   
   users:  User[] = [
     {
@@ -75,19 +91,23 @@ export class ApiService {
     return this.users
   }
 
-  ITEMS: string[] =  [  
+  benefits: string[] =  [  
     'Проезд',
     "Путешествия",
     "Рестораны"
   ];
   
   public getBenefits (){
-    return this.ITEMS
+    return this.benefits
   }
 
   addUser(user:User) {
     this.users.push(user)
     this.users.sort((a, b) => Number(a.idCard) - Number(b.idCard))
+    localStorage.setItem("store", JSON.stringify( {
+      users: this.users,
+      discont : this.discounts
+    }))
     return this.users
   }
 
@@ -95,6 +115,32 @@ export class ApiService {
     this.users =  this.users.filter(i => i.idCard !== user.idCard)
     this.users.push(user)
     this.users.sort((a, b) => Number(a.idCard) - Number(b.idCard))
+    localStorage.setItem("store", JSON.stringify( {
+      users: this.users,
+      discont : this.discounts
+    }))
     return this.users
+  }
+
+  discounts: Discount[] =[
+    {  title: "Скидка на проезд",
+       desc: "Для всех, кто старше 50",
+       start: "12.01.22",
+       end: "12.01.23"
+      }
+  ];
+
+  getDiscounts() {
+    return this.discounts
+  }
+
+  addDiscounts(discount: Discount) {
+    localStorage.setItem("store", JSON.stringify( {
+      users: this.users,
+      discont : this.discounts
+    }))
+    this.discounts.push(discount)
+    return this.discounts
+
   }
 }

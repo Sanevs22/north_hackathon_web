@@ -15,7 +15,8 @@ import { RegistryComponent } from './pages/registry/registry.component';
 import { PartnerComponent } from './pages/partner/partner.component';
 import { HomeComponent } from './pages/home/home.component';
 import { TuiButtonModule,TuiDataListModule  } from '@taiga-ui/core';
-import {TuiIslandModule, TuiTagModule, TuiInputModule, TuiDataListWrapperModule, TuiMultiSelectModule, TuiCheckboxLabeledModule} from '@taiga-ui/kit';
+import {TuiIslandModule, TuiTagModule, TuiInputModule, TuiDataListWrapperModule, TuiMultiSelectModule, TuiCheckboxLabeledModule
+, TuiInputDateModule} from '@taiga-ui/kit';
 import {TuiTableModule, TuiTableFiltersModule, } from '@taiga-ui/addon-table';
 
 @NgModule({
@@ -38,7 +39,8 @@ import {TuiTableModule, TuiTableFiltersModule, } from '@taiga-ui/addon-table';
     TuiDataListModule,
     TuiDataListWrapperModule,
     TuiMultiSelectModule,
-    TuiCheckboxLabeledModule
+    TuiCheckboxLabeledModule,
+    TuiInputDateModule
   ],
   exports: [],
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],

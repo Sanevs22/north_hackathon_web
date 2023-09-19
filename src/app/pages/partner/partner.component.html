@@ -1,1 +1,87 @@
-<p>partner works!</p>
+<div class="main">
+    <h1>
+        Кабинет партнера ЕКЖ
+    </h1>
+
+    <div class="tool">
+        <div>
+            <button
+            tuiButton
+            (click)="showDialog(-1)"
+
+          >
+            Добавить скидку
+          </button>
+        </div>
+    </div>
+
+    <hr/>
+    <br>
+
+<div class="content">
+    <tui-island 
+        *ngFor="let item of discounts; let index = index"
+        class="card" [hoverable]="true" size="l" textAlign="left"
+    >
+        <h3 class="tui-island__title">{{item.title}} </h3>
+        <p class="tui-island__paragraph">{{item.desc}}</p>
+        <p class="time">Действует {{item.start}}-{{item.end}}</p>
+      </tui-island>
+</div>
+
+
+
+</div>
+
+
+
+<ng-template
+    let-observer
+    [tuiDialogOptions]="{label: title, size: 's'}"
+    [(tuiDialog)]="open"
+>
+        <p>Введите данные пользователя</p>
+        <form [formGroup]="addUserForm">
+            <tui-input tuiTextfieldSize="s"
+            formControlName="title"
+            >
+            Название скидки
+              <input 
+               placeholder="Введите название" tuiTextfield  
+              />
+            </tui-input>
+
+            <br>
+
+            <tui-input tuiTextfieldSize="s"
+            formControlName="desc"
+            >
+            Описание скидки
+              <input 
+               placeholder="Введите описание" tuiTextfield  
+              />
+            </tui-input>
+            <br>
+
+            <tui-input-date formControlName="start">
+                Дата начала скидки
+                <input tuiTextfield />
+              </tui-input-date>
+            <br>
+
+            <tui-input-date formControlName="end">
+                Дата окончания скидки
+                <input tuiTextfield />
+              </tui-input-date>
+            <br>
+          </form>
+        <p>
+            <button
+                tuiButton
+                type="submit"
+                (click)=" isUpd ?  updateDiscounts() : addDiscounts()"
+            >
+            добавить
+            </button>
+        </p>
+</ng-template>
